@@ -1,5 +1,4 @@
 import { Link } from "@remix-run/react";
-import { Home, Settings, LayoutDashboard } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -10,6 +9,7 @@ import {
   SidebarMenuButton,
   SidebarTrigger
 } from "~/components/ui/sidebar";
+import { NAVIGATION_ITEMS } from "~/constants/navigation";
 
 export function SideNavigation() {
   return (
@@ -20,30 +20,16 @@ export function SideNavigation() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Home">
-              <Link to="/">
-                <Home />
-                <span>Home</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Dashboard">
-              <Link to="/dashboard">
-                <LayoutDashboard />
-                <span>Dashboard</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Settings">
-              <Link to="/settings">
-                <Settings />
-                <span>Settings</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {NAVIGATION_ITEMS.map((item) => (
+            <SidebarMenuItem key={item.path}>
+              <SidebarMenuButton asChild tooltip={item.tooltip}>
+                <Link to={item.path}>
+                  <item.icon />
+                  <span>{item.label}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>

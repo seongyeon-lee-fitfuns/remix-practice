@@ -16,7 +16,7 @@ export function ErrorBoundary() {
     
   return (
     <div>
-      <h1>ERROR</h1>
+      <h1>THIS IS ROOT ERROR BOUNDARY for client error</h1>
       <p>{error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.'}</p>
     </div>
   );
