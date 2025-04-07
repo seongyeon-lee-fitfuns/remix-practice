@@ -1,9 +1,9 @@
-import { Home, Settings, LayoutDashboard } from "lucide-react";
+import { Home, Settings, LayoutDashboard, Clock } from "lucide-react";
 
 export interface NavigationItem {
   path: string;
   label: string;
-  icon: typeof Home | typeof Settings | typeof LayoutDashboard;
+  icon: typeof Home | typeof Settings | typeof LayoutDashboard | typeof Clock;
   tooltip: string;
 }
 
@@ -31,6 +31,12 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: "Test",
     icon: LayoutDashboard,
     tooltip: "Test",
+  },
+  {
+    path: "/defer-test",
+    label: "Defer 테스트",
+    icon: Clock,
+    tooltip: "Remix Defer 테스트",
   },
 ];
 
