@@ -43,6 +43,10 @@ app.use(express.static("build/client", { maxAge: "1h" }));
 app.use(morgan("tiny"));
 
 // handle SSR requests
+app.all("*", (req, res, next) => {
+  console.info("Remix is just a handler on that server");
+  next();
+});
 app.all("*", remixHandler);
 
 const port = process.env.PORT || 3000;
