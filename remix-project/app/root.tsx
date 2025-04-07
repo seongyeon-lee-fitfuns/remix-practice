@@ -1,5 +1,6 @@
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -37,6 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <AppLayout>{children}</AppLayout>
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
