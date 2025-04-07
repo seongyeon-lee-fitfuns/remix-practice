@@ -1,14 +1,14 @@
 import {
-  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
+import { AppLayout } from "~/components/layout/AppLayout";
+import { ErrorBoundary as RootErrorBoundary } from "~/components/layout/ErrorBoundary";
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <AppLayout>{children}</AppLayout>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -46,32 +46,4 @@ export default function App() {
   return <Outlet />;
 }
 
-export function ErrorBoundary() {
-  const error = useRouteError();
-  console.error(error);
-  if (isRouteErrorResponse(error)) {
-    return (
-      <div>
-        <h1>ERROR</h1>
-        <p>{error.status}</p>
-        <p>{error.data}</p>
-      </div>
-    );
-  }
-    
-    return (
-      <html lang="en">
-        <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <h1>ERROR</h1>
-        <p>{error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.'}</p>
-        <Scripts />
-      </body>
-    </html>
-  );
-}
+export { RootErrorBoundary as ErrorBoundary };
