@@ -51,7 +51,7 @@ export default function TestPage() {
   const actionData = useActionData<typeof action>();
   
   return (
-    <div className="container mx-auto py-10">
+    <div className="container h-full mx-auto py-10">
       <h1 className="text-3xl font-bold mb-6">Remix Loader와 Action 테스트</h1>
       
       <div className="flex flex-col space-y-8">

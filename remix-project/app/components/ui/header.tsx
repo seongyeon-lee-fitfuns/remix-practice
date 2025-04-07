@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export function Header({ title = "Dashboard" }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-background px-4 md:px-6">
+    <header className="flex h-16 w-full items-center justify-between border-b bg-background px-4 md:px-6">
       <div className="flex items-center gap-2">
         <h1 className="text-xl font-semibold">{title}</h1>
       </div>

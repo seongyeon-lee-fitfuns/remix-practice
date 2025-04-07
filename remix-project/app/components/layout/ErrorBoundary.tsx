@@ -6,10 +6,10 @@ export function ErrorBoundary() {
   console.error(error);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="h-full flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+      <div className="max-w-md w-full">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">
+          <h2 className="text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">
             {isRouteErrorResponse(error) ? '페이지 오류' : '예상치 못한 오류'}
           </h2>
           <div className="mt-4 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
