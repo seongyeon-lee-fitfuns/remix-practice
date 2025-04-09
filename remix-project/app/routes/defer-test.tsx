@@ -1,5 +1,5 @@
-import { defer } from "@remix-run/node";
-import { Await, useLoaderData } from "@remix-run/react";
+import { defer } from "react-router";
+import { Await, useLoaderData } from "react-router";
 import { Suspense } from "react";
 
 // 빠른 데이터를 모방한 함수

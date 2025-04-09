@@ -1,4 +1,4 @@
-import { useLocation } from "@remix-run/react";
+import { useLocation } from "react-router";
 import { SidebarProvider, SidebarInset } from "~/components/ui/sidebar";
 import { Header } from "~/components/ui/header";
 import { SideNavigation } from "~/components/layout/SideNavigation";
