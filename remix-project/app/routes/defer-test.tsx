@@ -1,4 +1,4 @@
-import { defer } from "@remix-run/node";
+import { data } from "@remix-run/node";
 import { Await, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 
@@ -41,7 +41,7 @@ export const loader = async () => {
   
   // 느린 데이터는 defer를 통해 비동기적으로 처리
   // 최신 버전에서는 두 번째 인자로 옵션을 전달
-  return defer({
+  return data({
     fastData,
     slowData: getSlowData(),
     verySlowData: getVerySlowData(),

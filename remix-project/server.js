@@ -42,6 +42,11 @@ app.use(express.static("build/client", { maxAge: "1h" }));
 
 app.use(morgan("tiny"));
 
+app.use("/settings", (req, res, next) => {
+  console.info("중간에 catch")
+  next();
+});
+
 // handle SSR requests
 app.all("*", (req, res, next) => {
   console.info("Remix is just a handler on that server");

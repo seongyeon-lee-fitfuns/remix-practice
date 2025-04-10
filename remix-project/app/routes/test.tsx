@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/node";
-import { Form, isRouteErrorResponse, useActionData, useLoaderData, useRouteError } from "@remix-run/react";
+import { data, Form, isRouteErrorResponse, useActionData, useLoaderData, useRouteError } from "@remix-run/react";
 import { LoaderTest } from "~/components/LoaderTest";
 import { ActionTest } from "~/components/ActionTest";
 import { Button } from "~/components/ui/button";
@@ -8,7 +8,7 @@ export async function loader() {
   const currentTime = new Date().toLocaleString();
   const randomNumber = Math.floor(Math.random() * 100);
   
-  return Response.json({
+  return data({
     currentTime,
     randomNumber,
     message: "loader에서 가져온 데이터입니다."
@@ -22,7 +22,7 @@ export async function action({ request }: { request: Request }) {
   
   // 입력 유효성 검사
   if (action === "submit" && (!name || name.length < 2)) {
-    return Response.json(
+    return data(
       { error: "이름은 최소 2글자 이상이어야 합니다." },
       { status: 400 }
     );
@@ -39,7 +39,7 @@ export async function action({ request }: { request: Request }) {
   }
 
   // 성공 응답
-  return Response.json({
+  return data({
     success: true,
     submittedData: { name },
     message: `${name}님, 폼이 성공적으로 제출되었습니다.`
@@ -61,7 +61,7 @@ export default function TestPage() {
           message={loaderData.message}
         />
         
-        <ActionTest actionData={actionData} />
+        <ActionTest actionData={actionData ?? null} />
       </div>
     </div>
   );
