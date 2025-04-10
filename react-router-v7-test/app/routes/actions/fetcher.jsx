@@ -1,4 +1,16 @@
-import { useFetcher } from "react-router";
+import { useFetcher, useLoaderData, useNavigation } from "react-router";
+
+// 로더 함수 추가
+export async function loader() {
+  console.log("Fetcher 라우트 로더 호출됨");
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  return {
+    message: "Fetcher 라우트 로더 데이터",
+    timestamp: new Date().toISOString(),
+    loadCount: Math.floor(Math.random() * 1000) // 로더가 새로 호출될 때마다 변경되는 값
+  };
+}
 
 // 서버 액션 정의
 export async function action({ request }) {
@@ -17,6 +29,8 @@ export async function action({ request }) {
 export default function FetcherActionTest() {
   // fetcher 사용
   const fetcher = useFetcher();
+  const loaderData = useLoaderData();
+  const navigation = useNavigation();
   
   const handleFetcherClick = () => {
     fetcher.submit(
@@ -38,10 +52,26 @@ export default function FetcherActionTest() {
   const isSubmitting = fetcher.state === "submitting";
   const isIdle = fetcher.state === "idle";
   const hasData = fetcher.data != null;
+  const isLoading = navigation.state === "loading";
 
   return (
     <div>
       <h1>Fetcher로 액션 호출 테스트</h1>
+      
+      <div className="loader-status">
+        <h2>로더 상태</h2>
+        <div className={`status-indicator ${isLoading ? 'loading' : 'idle'}`}>
+          {isLoading ? "로딩 중..." : "로딩 완료"}
+        </div>
+        <div className="loader-data">
+          <h3>로더 데이터 (loadCount: {loaderData.loadCount}):</h3>
+          <pre>{JSON.stringify(loaderData, null, 2)}</pre>
+        </div>
+        <p className="note">
+          <strong>참고:</strong> Fetcher를 사용하여 액션을 호출할 때는 페이지가 리로드되지 않으므로
+          로더 상태는 변경되지 않습니다. 하지만 액션이 완료된 후 관련된 로더 데이터는 자동으로 갱신됩니다.
+        </p>
+      </div>
       
       <div className="actions-container">
         <div className="action-card">
@@ -84,7 +114,7 @@ export default function FetcherActionTest() {
       
       {hasData && isIdle && (
         <div className="result-container">
-          <h3>결과:</h3>
+          <h3>액션 결과:</h3>
           <pre>
             {JSON.stringify(fetcher.data, null, 2)}
           </pre>
