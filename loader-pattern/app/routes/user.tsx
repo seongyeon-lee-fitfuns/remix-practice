@@ -22,6 +22,11 @@ function User({ loaderData }: Route.ComponentProps) {
     <div >
       <h2>사용자: {user.name}</h2>
       <Outlet />
+      <a
+        href="/actions"
+      >
+        Actions Test
+      </a>
     </div>
   );
 }

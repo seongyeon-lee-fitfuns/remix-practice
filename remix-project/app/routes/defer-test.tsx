@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { data } from "@remix-run/node";
 import { Await, useLoaderData } from "@remix-run/react";
+=======
+import { defer } from "react-router";
+import { Await, useLoaderData } from "react-router";
+>>>>>>> f4b52344ebe1b0f9a8d367672bceddc1a28910fd
 import { Suspense } from "react";
 
 // 빠른 데이터를 모방한 함수

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { redirect } from "@remix-run/node";
 import { data, Form, isRouteErrorResponse, useActionData, useLoaderData, useRouteError } from "@remix-run/react";
+=======
+import { redirect } from "react-router";
+import { Form, isRouteErrorResponse, useActionData, useLoaderData, useRouteError } from "react-router";
+>>>>>>> f4b52344ebe1b0f9a8d367672bceddc1a28910fd
 import { LoaderTest } from "~/components/LoaderTest";
 import { ActionTest } from "~/components/ActionTest";
 import { Button } from "~/components/ui/button";

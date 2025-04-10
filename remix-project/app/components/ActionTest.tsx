@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 import { Form, useRouteError, useFetcher } from "@remix-run/react";
+=======
+import { Form, useRouteError } from "react-router";
+>>>>>>> f4b52344ebe1b0f9a8d367672bceddc1a28910fd
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Separator } from "~/components/ui/separator";
-import { isRouteErrorResponse } from "@remix-run/react";
+import { isRouteErrorResponse } from "react-router";
 
 type ActionTestProps = {
   actionData: {
