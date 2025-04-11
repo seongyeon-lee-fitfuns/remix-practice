@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 export const Auth0Provider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+  const domain = import.meta.env.VITE_AUTH0_ISSUER_BASE_URL;
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL || window.location.origin;
 
@@ -20,7 +20,7 @@ export const Auth0Provider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Auth0ProviderBase
-      domain={domain}
+      domain={domain.replace(/^https?:\/\//, '')}
       clientId={clientId}
       authorizationParams={{
         redirect_uri: redirectUri,
