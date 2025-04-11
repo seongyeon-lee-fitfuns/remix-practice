@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Auth0Provider } from "./components/Auth0Provider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -29,7 +30,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  if (typeof window === 'undefined') {
+    return <Outlet />;
+  }
+  
+  return (
+    <Auth0Provider>
+      <Outlet />
+    </Auth0Provider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
